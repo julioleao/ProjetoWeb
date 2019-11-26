@@ -7,7 +7,7 @@ import { Task } from 'src/model/task';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = 'http://localhost:3000/api/task';
+const apiUrl = 'http://localhost:3000/task';
 
 @Injectable({
   providedIn: 'root'

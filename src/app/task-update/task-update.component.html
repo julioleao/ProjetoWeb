@@ -1,3 +1,13 @@
-<p>
-  task-update works!
-</p>
+<div>
+  <h3>Editar tarefa</h3>
+</div>
+<form class="example-container" [formGroup]="taskForm" (ngSubmit)="updateTask(taskForm.value)">
+  <mat-form-field>
+    <input matInput title="title" placeholder="O que fazer?" formControlName="title">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput title="where" placeholder="Onde?" formControlName="where">
+  </mat-form-field>
+
+  <button type="submit" [disabled]="!taskForm.valid" mat-button color="primary">Salvar</button>
+</form>
