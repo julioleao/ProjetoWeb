@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { Task } from 'src/model/task';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 
 @Component({
   selector: 'app-task-read',
@@ -14,6 +14,9 @@ export class TaskReadComponent implements OnInit {
   dSource = new MatTableDataSource(this.dataSource);
   isLoadingResults = false;
 
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   constructor(private api: ApiService) { }
 
   ngOnInit() {
@@ -22,6 +25,8 @@ export class TaskReadComponent implements OnInit {
     .subscribe(res => {
       this.dataSource = res;
       this.dSource = new MatTableDataSource(this.dataSource);
+      this.dSource.paginator = this.paginator;
+      this.dSource.sort = this.sort;
       this.isLoadingResults = false;
     }, err => {
       console.log(err);
