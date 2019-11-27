@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, NgForm, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/service/api.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-task-update',
@@ -37,8 +38,19 @@ export class TaskUpdateComponent implements OnInit {
   }
 
   updateTask(form: NgForm) {
-    this.isLoadingResults = true;
-    this.api.updateTask(this.id, form)
+    Swal.fire({
+      title: 'Eaí',
+      text: 'deseja salvar a edição?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Não',
+      confirmButtonText: 'Sim, quero!'
+    }).then((result) => {
+      if (result.value) {
+        this.isLoadingResults = true;
+        this.api.updateTask(this.id, form)
       .subscribe(res => {
         this.isLoadingResults = false;
         this.router.navigate(['/task-detail/' + this.id]);
@@ -46,6 +58,13 @@ export class TaskUpdateComponent implements OnInit {
         console.log(err);
         this.isLoadingResults = false;
       });
+        Swal.fire(
+          'Boa!',
+          'Edição salva!',
+          'success'
+        );
+      }
+    });
   }
 
 }

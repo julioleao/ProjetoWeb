@@ -48,7 +48,7 @@ export class ApiService {
   }
 
   deleteTask(id): Observable<Task> {
-    const url = `${apiUrl}/delete/${id}`;
+    const url = `${apiUrl}/${id}`;
 
     return this.http.delete<Task>(url, httpOptions).pipe(
       tap(_ => console.log(`remove a tarefa com id=${id}`)),

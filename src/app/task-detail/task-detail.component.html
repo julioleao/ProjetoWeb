@@ -1,28 +1,41 @@
-
 <div class="example-container mat-elevation-z8">
-  <div class="example-loading-shade"
-       *ngIf="isLoadingresults">
+  <div class="example-loading-shade" *ngIf="isLoadingresults">
     <mat-spinner *ngIf="isLoadingresults"></mat-spinner>
   </div>
   <div class="button-row">
-    <button mat-flat-button color="accent" [routerLink]="['/task']"><mat-icon>list</mat-icon> Voltar</button>
+    <button mat-flat-button color="accent" [routerLink]="['/task']">
+      <mat-icon>list</mat-icon> Voltar
+    </button>
   </div>
   <mat-card class="example-card">
     <mat-card-header>
-      <mat-card-title><h2>{{task.title}}</h2></mat-card-title>
-      <mat-card-subtitle>{{produto.desc_produto}}</mat-card-subtitle>
+      <mat-card-subtitle>TAREFA</mat-card-subtitle>
+      <mat-card-actions>
+        <mat-card-title
+          ><h2>{{ task.title }}</h2></mat-card-title
+        >
+      </mat-card-actions>
     </mat-card-header>
-    <mat-card-content>
-      <dl>
-        <dt>Preço:</dt>
-        <dd>{{produto.preco_produto}}</dd>
-        <dt>Atualizado em:</dt>
-        <dd>{{produto.dt_atualizacao | date}}</dd>
-      </dl>
-    </mat-card-content>
+    <mat-card-header>
+      <mat-card-subtitle>LOCAL</mat-card-subtitle>
+      <mat-card-actions>
+        <mat-card-title
+          ><h2>{{ task.where }}</h2></mat-card-title
+        >
+      </mat-card-actions>
+    </mat-card-header>
     <mat-card-actions>
-      <button mat-flat-button color="primary" class="teste" [routerLink]="['/produto-editar', produto._id]"><mat-icon>edit</mat-icon> Editar</button>
-      <button mat-flat-button color="warn" (click)="deleteProduto(produto._id)"><mat-icon>delete</mat-icon> Excluir</button>
+      <button
+        mat-flat-button
+        color="primary"
+        class="teste"
+        [routerLink]="['/task-edit', task.id]"
+      >
+        <mat-icon>edit</mat-icon> Editar
+      </button>
+      <button mat-flat-button color="warn" (click)="deleteTask(task.id)">
+        <mat-icon>delete</mat-icon> Excluir
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>

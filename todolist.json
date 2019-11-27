@@ -1,23 +1,18 @@
 {
   "task": [
     {
-      "id": 1,
-      "title": "get up to study",
-      "where": "Federal University of Paraná"
+      "title": "Bater o Rango",
+      "where": "R.U",
+      "id": 2
     },
     {
-      "id": 2,
-      "title": "eat",
-      "where": "Bariloche Restaurant"
-    },
-    {
-      "title": "bater o rango",
-      "where": "Federal University of Paraná",
+      "title": "Dormir",
+      "where": "Casa",
       "id": 3
     },
     {
-      "title": "dormir",
-      "where": "Casa",
+      "title": "Trampo",
+      "where": "DIMASU",
       "id": 4
     }
   ]

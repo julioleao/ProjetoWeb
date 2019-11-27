@@ -9,7 +9,7 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./task-read.component.css']
 })
 export class TaskReadComponent implements OnInit {
-  displayedColumns: string[] = [ 'id', 'title', 'where' ];
+  displayedColumns: string[] = [ 'id', 'title', 'where', 'detail' ];
   dataSource: Task[];
   dSource = new MatTableDataSource(this.dataSource);
   isLoadingResults = false;

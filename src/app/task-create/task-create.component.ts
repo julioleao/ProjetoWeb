@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ApiService } from 'src/service/api.service';
 import { ThrowStmt } from '@angular/compiler';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-task-create',
@@ -32,6 +33,13 @@ export class TaskCreateComponent implements OnInit {
         console.log(err);
         this.isLoadingResults = false;
       });
+    Swal.fire(
+      'Feito!',
+      'tarefa adicionada!',
+      'success'
+    );
+
+
   }
 
 }
