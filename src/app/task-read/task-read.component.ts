@@ -9,10 +9,9 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
   styleUrls: ['./task-read.component.css']
 })
 export class TaskReadComponent implements OnInit {
-  displayedColumns: string[] = [ 'id', 'title', 'where', 'detail' ];
+  displayedColumns: string[] = [ 'title', 'where', 'detail' ];
   dataSource: Task[];
   dSource = new MatTableDataSource(this.dataSource);
-  isLoadingResults = false;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -27,10 +26,8 @@ export class TaskReadComponent implements OnInit {
       this.dSource = new MatTableDataSource(this.dataSource);
       this.dSource.paginator = this.paginator;
       this.dSource.sort = this.sort;
-      this.isLoadingResults = false;
     }, err => {
       console.log(err);
-      this.isLoadingResults = false;
     });
   }
 

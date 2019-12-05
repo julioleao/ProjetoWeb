@@ -17,51 +17,26 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(apiUrl)
-      .pipe(
-        tap(tasks => console.log('leu as tarefas')),
-        catchError(this.handleError('getTasks', []))
-      );
+    return this.http.get<Task[]>(apiUrl);
   }
 
   getTask(id: number): Observable<Task> {
     const url = `${apiUrl}/${id}`;
-    return this.http.get<Task>(url).pipe(
-      tap(_ => console.log(`leu a tarefa id=${id}`)),
-      catchError(this.handleError<Task>(`getTask id=${id}`))
-    );
+    return this.http.get<Task>(url);
   }
 
   addTask(task): Observable<Task> {
-    return this.http.post<Task>(apiUrl, task, httpOptions).pipe(
-      tap((t: Task) => console.log(`adicionou tarefa com w/ id=${t.id}`)),
-      catchError(this.handleError<Task>('addTask'))
-    );
+    return this.http.post<Task>(apiUrl, task, httpOptions);
   }
 
   updateTask(id, task): Observable<Task> {
     const url = `${apiUrl}/${id}`;
-    return this.http.put(url, task, httpOptions).pipe(
-      tap(_ => console.log(`atualiza a tarefa com id=${id}`)),
-      catchError(this.handleError<any>('updateTask'))
-    );
+    return this.http.put<Task>(url, task, httpOptions);
   }
 
   deleteTask(id): Observable<Task> {
     const url = `${apiUrl}/${id}`;
-
-    return this.http.delete<Task>(url, httpOptions).pipe(
-      tap(_ => console.log(`remove a tarefa com id=${id}`)),
-      catchError(this.handleError<Task>('deleteTask'))
-    );
-  }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-
-      return of(result as T);
-    };
+    return this.http.delete<Task>(url, httpOptions);
   }
 
 }

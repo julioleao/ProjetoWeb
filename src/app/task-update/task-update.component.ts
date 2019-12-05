@@ -14,7 +14,6 @@ export class TaskUpdateComponent implements OnInit {
   taskForm: FormGroup;
   title: any = '';
   where: any = '';
-  isLoadingResults = false;
 
   constructor(private router: Router, private route: ActivatedRoute,
               private api: ApiService, private formBuilder: FormBuilder) { }
@@ -49,14 +48,11 @@ export class TaskUpdateComponent implements OnInit {
       confirmButtonText: 'Sim, quero!'
     }).then((result) => {
       if (result.value) {
-        this.isLoadingResults = true;
         this.api.updateTask(this.id, form)
       .subscribe(res => {
-        this.isLoadingResults = false;
         this.router.navigate(['/task-detail/' + this.id]);
       }, (err) => {
         console.log(err);
-        this.isLoadingResults = false;
       });
         Swal.fire(
           'Boa!',

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ApiService } from 'src/service/api.service';
-import { ThrowStmt } from '@angular/compiler';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,7 +11,6 @@ import Swal from 'sweetalert2';
 })
 export class TaskCreateComponent implements OnInit {
   taskForm: FormGroup;
-  isLoadingResults = false;
   constructor(private router: Router, private api: ApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -23,15 +21,12 @@ export class TaskCreateComponent implements OnInit {
   }
 
   addTask(form: NgForm) {
-    this.isLoadingResults = true;
     this.api.addTask(form)
       .subscribe(res => {
         const id = res.id;
-        this.isLoadingResults = false;
         this.router.navigate(['/task-detail', id]);
       }, (err) => {
         console.log(err);
-        this.isLoadingResults = false;
       });
     Swal.fire(
       'Feito!',
