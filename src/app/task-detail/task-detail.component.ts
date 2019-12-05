@@ -11,7 +11,6 @@ import Swal from 'sweetalert2';
 })
 export class TaskDetailComponent implements OnInit {
   task: Task = { id: null, title: '', where: '' };
-  isLoadingresults = true;
   constructor(private router: Router, private route: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit() {
@@ -23,7 +22,6 @@ export class TaskDetailComponent implements OnInit {
       .subscribe(data => {
         this.task = data;
         console.log(this.task);
-        this.isLoadingresults = false;
       });
   }
 
@@ -42,11 +40,9 @@ export class TaskDetailComponent implements OnInit {
       if (result.value) {
         this.api.deleteTask(id)
       .subscribe(res => {
-        this.isLoadingresults = false;
         this.router.navigate(['/task']);
       }, (err) => {
         console.log(err);
-        this.isLoadingresults = false;
       });
         Swal.fire(
           'Vala!',
